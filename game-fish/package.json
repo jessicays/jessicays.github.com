@@ -1,0 +1,14 @@
+{
+  "name": "game-fish",
+  "version": "1.0.0",
+  "description": "catch fish by zns",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "fish"
+  ],
+  "author": "strive",
+  "license": "MIT"
+}

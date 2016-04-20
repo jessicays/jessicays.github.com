@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{ margin: 0; padding: 0; }
+        div{ width: 600px; height: 390px; margin: 100px auto; position: relative; }
+        span{ position: absolute; background: url(img/1.jpg) no-repeat; opacity: 0; }
+    </style>
+    <script src="js/move.js"></script>
+    <script>
+        window.onload=function(){
+            var oDiv=document.getElementsByTagName('div')[0];
+            var oImg=document.getElementsByTagName('img')[0];
+            //创建span
+            var W=600;//div的宽
+            var H=390;//div的高
+            var col=6;//列
+            var row=5;//行
+            var w=W/col;//oSpan的宽
+            var h=H/row;//oSpan的高
+            var aSpan=[];
+            for(var r=0;r<row;r++)//行
+            {
+                for(var c=0;c<col;c++)//列
+                {
+                    var oSpan=document.createElement('span');
+                    oSpan.style.width=w+'px';
+                    oSpan.style.height=h+'px';
+                    var left=c*w;
+                    var top=r*h;
+                    oSpan.style.left=left+'px';
+                    oSpan.style.top=top+'px';
+                    oSpan.style.backgroundPosition=-left+'px -'+top+'px';
+                    oDiv.appendChild(oSpan);
+                    aSpan.push(oSpan);//获取所有的span
+                }
+            }
+            //span逐渐依次出现
+            var arr=['10.jpg','11.jpg','12.jpg'];
+            var now=0;//点击次数
+            var bFlag=false;
+            document.onclick=function(){
+                if(bFlag)
+                {
+                    return false;
+                }
+                bFlag=true;
+                now++;
+                for(var i=0;i<aSpan.length;i++)
+                {
+                    aSpan[i].style.backgroundImage='url(img/'+arr[now%arr.length]+')';
+                    aSpan[i].style.opacity=0;
+                }
+                var n=0;
+                var timer=setInterval(function(){
+                    (function(index){
+                        move(aSpan[n],{opacity:1},{complete:function(){
+                            if(index==aSpan.length-1)
+                            {
+                                //运动结束换图片
+                                oImg.src='img/'+arr[now%arr.length];
+                                bFlag=false; 
+                            }
+                        }});
+                    })(n);
+                    n++;
+                    if(n==aSpan.length)
+                    {
+                        clearInterval(timer);
+                    }
+                },100);
+            };
+        }; 
+    </script>
+</head>
+<body>
+    <div>
+        <img src="img/11.jpg" />
+    </div>
+</body>
+</html>

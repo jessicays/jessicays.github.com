@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<style>
+* { margin:0; padding:0; }
+ul { width:510px; height:510px; border:1px solid red; margin:50px auto; }
+li { list-style:none; float:left; width:150px; height:150px; background:#ccc; line-height:150px; text-align:center; font-size:80px; margin:10px; }
+
+input { position:absolute; top:50px; left:100px; width:100px; height:40px; }
+</style>
+<script src="js/move.js"></script>
+<script>
+window.onload=function (){
+	var aLi=document.getElementsByTagName('li');
+	
+	// 布局转换
+	var aPos=[];
+	for (var i=0; i<aLi.length; i++)
+	{
+		var left=aLi[i].offsetLeft;
+		var top=aLi[i].offsetTop;
+		
+		aPos.push({left:left, top:top});
+		
+		aLi[i].style.left=left+'px';
+		aLi[i].style.top=top+'px';
+	}
+	
+	for (var i=0; i<aLi.length; i++)
+	{
+		aLi[i].style.position='absolute';
+		aLi[i].style.margin=0;
+	}
+	
+	// 点击
+	var oBtn=document.getElementById('btn');
+	oBtn.onclick=function (){
+		var i=0;
+		var timer=setInterval(function (){
+			(function (index){
+				move(aLi[i], {top:0, left:0}, {
+					complete:function (){
+						if (index == aLi.length-1)
+						{
+							end();
+						}
+					}
+				});
+			})(i);
+			
+			if (i == aLi.length-1)
+			{
+				clearInterval(timer);
+			}
+			
+			i++;
+		}, 100);
+	};
+	
+	function end()
+	{
+		for (var i=0; i<aLi.length; i++)
+		{
+			aLi[i].style.background='red';
+		}
+		
+		var i=aLi.length-1;
+		var timer=setInterval(function (){
+			move(aLi[i], aPos[i]);
+			i--;
+			if (i == -1)
+			{
+				clearInterval(timer);
+			}
+		}, 100);
+	}
+};
+</script>
+</head>
+
+<body>
+	<input type="button" value="go" id="btn" />
+	<ul>
+		<li>0</li>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+	</ul>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

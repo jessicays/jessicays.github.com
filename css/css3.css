@@ -1,0 +1,52 @@
+@-webkit-keyFrames down{
+    0%{ -webkit-transform:translateY(-200px); opacity: 0;}
+    100%{ -webkit-transform:translateY(0); opacity: 1;}
+}
+
+@-moz-keyFrames down{
+    0%{ -moz-transform:translateY(-200px); opacity: 0;}
+    100%{ -moz-transform:translateY(0); opacity: 1;}
+}
+
+@-ms-keyFrames down{
+    0%{ -ms-transform:translateY(-200px); opacity: 0;}
+    100%{ -ms-transform:translateY(0); opacity: 1;}
+}
+
+.down{ -webkit-animation: down 0.8s; -moz-animation: down 0.8s; -ms-animation: down 0.8s;}
+
+
+@-webkit-keyFrames formRight{
+    0%{ -webkit-transform:translateX(100px); opacity: 0;}
+    100%{ -webkit-transform:translateX(0); opacity: 1;}
+}
+
+@-moz-keyFrames formRight{
+    0%{ -moz-transform:translateX(100px); opacity: 0;}
+    100%{ -moz-transform:translateX(0); opacity: 1;}
+}
+
+@-ms-keyFrames formRight{
+    0%{ -ms-transform:translateX(100px); opacity: 0;}
+    100%{ -ms-transform:translateX(0); opacity: 1;}
+}
+
+.formRight{ -webkit-animation: formRight 0.7s; -moz-animation: formRight 0.7s; -ms-animation: formRight 0.7s }
+
+@-webkit-keyFrames toBig{
+    0%{ -webkit-transform:scale(0.1);  background: rgba(0,0,0,0);}
+    100%{ -webkit-transform:scale(1);  background: rgba(0,0,0,0.9);}
+}
+
+@-moz-keyFrames toBig{
+    0%{ -moz-transform:scale(0.1);  background: rgba(0,0,0,0);}
+    100%{ -moz-transform:scale(1);  background: rgba(0,0,0,0.9);}
+}
+
+@-ms-keyFrames toBig{
+    0%{ -ms-transform:scale(0.1);  background: rgba(0,0,0,0);}
+    100%{ -ms-transform:scale(1);  background: rgba(0,0,0,0.9);}
+}
+
+.toBig{ -webkit-animation: toBig 0.5s; -moz-animation: toBig 0.5s; -ms-animation: toBig 0.5s; background: rgba(0,0,0,0.9);}
+    

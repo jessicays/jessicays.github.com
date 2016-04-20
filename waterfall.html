@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com">
+<meta name="copyright" content="智能社 - zhinengshe.com">
+<title></title>
+<style>
+* { margin:0; padding:0; }
+div { overflow:hidden; width:966px; margin:0 auto; }
+ul { float:left; width:300px; margin:10px; border:1px solid red; }
+li { list-style:none; margin:5px; background:#ccc; font-size:50px; text-align:center; font-weight:bold; }
+</style>
+<script>
+window.onload=function (){
+	var aUl=document.getElementsByTagName('ul');
+	// 把假数组变成真数组
+	var arr=[];
+	for (var i=0; i<aUl.length; i++)
+	{
+		arr.push(aUl[i]);
+	}
+	
+	// 模拟接收 20 后台数据
+	createLi();
+	
+	// 到底部再加载20个
+	window.onscroll=function (){
+		var scrollTop=document.body.scrollTop || document.documentElement.scrollTop;
+		var clientHeight=document.documentElement.clientHeight;
+		
+		var h=document.body.offsetHeight;
+		
+		// 提前加载
+		if (h-100 <= scrollTop+clientHeight)
+		{
+			// 到底部了，再加载20个
+			createLi();
+		}
+	};
+	
+	function createLi()
+	{
+		// 模拟接收 20 后台数据
+		for (var i=0; i<20; i++)
+		{
+			var oLi=document.createElement('li');
+			oLi.style.height=rnd(100, 300)+'px';
+			// 测试
+			oLi.innerHTML=i;
+			
+			// 最短
+			arr.sort(function (ul1, ul2){
+				return ul1.offsetHeight-ul2.offsetHeight;
+			});
+			arr[0].appendChild(oLi);
+		}
+	}
+	
+	function rnd(n, m)
+	{
+		return Math.floor(Math.random()*(m-n)+n);
+	}
+};
+</script>
+</head>
+
+<body>	
+	<div>
+		<ul></ul>
+		<ul></ul>
+		<ul></ul>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

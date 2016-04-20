@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* 基础css */
+
+*{ padding:0; margin:0; line-height: 100%;}
+body{ font-size:12px;}
+ul,ol{ list-style:none;}
+a{ color:#000; text-decoration:none;}
+h1,h2,h3,h4,h5,h6{ font-size:100%; font-weight:normal;}
+i,em{ font-style:normal;}
+b,strong{ font-weight:normal;}
+a img{ border:none;}
+img{ vertical-align:top;}
+.clearfix:after{ display: block; content: '' ; clear: both;}
+.clearfix{zoom:1;}
+input{ outline: none;}
+textarea{ resize: none; outline: none; }
+table{ border-collapse:collapse;}
+td,th{ border:1px solid #000; padding:0;}
+.fl{ float: left;!important;}
+.fr{ float: right;!important;}

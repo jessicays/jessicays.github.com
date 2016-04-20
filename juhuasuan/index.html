@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/base.css">
+    <style type="text/css">
+        html{ font-size: 20px; }
+        .box{ width: 16rem; margin: 0 auto;  }
+        header{ height: 2.5rem; background: #efefef; }
+        header div{ width: 15rem; margin: 0 auto; overflow: hidden; }
+        header div .back{ width: 3rem; height: 1.425rem; margin-top: 0.55rem; float: left;}
+        header div .logo{ width: 3.7rem; height: 0.975rem; float: left; margin: 0.75rem 0 0 2.5rem;}
+        .pic img{ width: 16rem; height: 6.7rem;}
+        .pic li{ display: none;}
+        .pic li.show{ display: block;}
+        .btn{ margin: 0.5rem auto; width: 2.5rem; }
+        .btn li{ width: 0.25rem; height: 0.25rem; background: #a9a9a9; border-radius: 50%; float: left; margin-right: 0.25rem;}
+        .btn li.active{ background: #ff4300; }
+    
+        .nav{  width: 15rem;overflow: hidden; margin: 0 auto; margin-bottom: 1.075rem; }
+        .nav li{ width: calc(25% - 0.9rem); float: left; font-size: 0.55rem; color: #999999; padding-left: 0.9rem; margin-top: 1rem;}
+        .nav li img{ width: 2rem; height: 2rem; }
+        .nav li p{ width: 2rem; text-align: center; margin-top: 0.5rem;}
+
+        .hot{ width: calc(15rem - 0.55rem); height:1.8rem;overflow: hidden; margin: 0 auto; line-height: 1.8rem; position: relative; font-size: 0.65rem; padding-left: 0.55rem; border-bottom: 0.1rem solid #dcdcdc; margin-bottom: 0.25rem;}
+        .hot i{ width: 0.1rem; height: 0.75rem; background: #d51938; position: absolute; left: 0; top: 0.525rem;}
+        .hot span{ position: absolute; right: 0.05rem; top: 0.6rem; }
+    
+        .list{width: 15rem; margin: 0 auto;}
+        .list li{ overflow: hidden; background: #f4f4f4; margin-top: 0.5rem;  position: relative;}
+        .list li .number{ font-size: 0.875rem; font-weight: bold; width: 1.5rem; height: 3rem; background: #e00202; float: left; color: #fff; text-align: center; line-height: 3rem; }
+        .list li img{ width: 4.5rem; height: 3rem; float: left; margin-right: 0.55rem;}
+        .price{ float: left;}
+        .price div{ float: left; font-size: 0.55rem; color: #999999; }
+        .price div p{ line-height: 0.9rem; }
+        .price div p:nth-child(1){ margin-top: 0.55rem; }
+        .red{ color: #c7223d; }
+        .word{text-decoration:line-through;}
+        .num{ font-size: 0.65rem; position: absolute; right:1.3rem; top:1rem;  }
+        .icon{ width: 0.325rem; height: 0.55rem; position: absolute; right: 0.55rem; top: 1rem; background: url(images/icon.png) no-repeat; background-size: 100%; }
+
+        .nr-box{width: 15rem; margin: 0 auto;}
+        .nr{ margin-top: 0.5rem;  margin-bottom: 0.45rem;}
+        .nr div{ overflow: hidden; margin-top:0.5rem; }
+        .nr img{ width: 3.75rem; height: 8.725rem; float: left;}
+        .nr p{ height: 2rem; background: #f5f5f5; color: #666666; font-size: 0.65rem; text-align: center; line-height: 2rem; }
+        .nr ul{ float: left; overflow: hidden; width:11.25rem; height:8.725rem;border-top: 0.025rem solid #eeeeee;border-left: 0.025rem solid #eeeeee;  box-sizing: border-box;}
+        .nr ul li{ width: 3.733rem; height: 2.175rem; float: left;border-right: 0.025rem solid #eeeeee;border-bottom: 0.025rem solid #eeeeee; box-sizing: border-box; font-size: 0.65rem; text-align: center; line-height: 2.175rem;}
+        .nr .pic2{ margin-top:1.05rem; }
+        .pic2 img{ width: 5rem; height: 4rem; }
+
+        footer{ height: 2.2rem; background: #f8f8f8; }
+        .login{ width: 15rem; margin: 0 auto; font-size: 0.65rem; overflow: hidden; position: relative;}
+        .login a{ float: left; width: 1.925rem; text-align: center; line-height:2.2rem; }
+        .login a:nth-child(1){ margin-right: 0.65rem; }
+        .login span{ float: right; margin-right: 1.1rem;  line-height:2.2rem; }
+        .login i{ position: absolute; background: url(images/15.png); width: 0.5rem; height: 0.25rem; background-size: 100%; right:0.2rem; top:0.925rem;}
+        .last{height: 3.65rem; background: #eeeeee; }
+        .last div{  width: 15rem; margin: 0 auto; text-align: center;  padding-top: 1.05rem; }
+        .last p:nth-child(1){ font-size: 0.65rem;}
+        .last p:nth-child(2){ font-size: 0.5rem; color: #999;  padding-top: 0.875rem;}
+    </style>
+    <script>
+        (function(global){
+            function remChange(){
+                document.documentElement.style.fontSize=20*document.documentElement.clientWidth/320+'px';
+            }
+            remChange();
+            global.addEventListener('resize',remChange,false);
+        })(window);
+        window.onload=function(){
+            var oUl1=document.getElementById('btn');
+            var aBtn=oUl1.children;
+            var oUl2=document.getElementById('pic');
+            var aLi=oUl2.children;
+            for(var i=0;i<aBtn.length;i++)
+            {   
+                aBtn[i].index=i;
+                aBtn[i].onmouseover=function(){
+                    for(var i=0;i<aBtn.length;i++){
+                        aBtn[i].className='';
+                        aLi[i].className='';
+                    }
+                    this.className='active';
+                    aLi[this.index].className='show';
+                };
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="box">
+        <header>
+            <div>
+                <img src="images/1.png" class="back">
+                <img src="images/2.png" class="logo">
+            </div>
+        </header>
+        <div class="tab">
+            <ul class="pic" id="pic">
+                <li class="show"><img src="images/3.png"></li>
+                <li><img src="images/3.png"></li>
+                <li><img src="images/3.png"></li>
+                <li><img src="images/3.png"></li>
+                <li><img src="images/3.png"></li>
+            </ul>
+            <ul class="btn" id="btn">
+                <li class="active"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <ul class="nav">
+            <li>
+                <img src="images/4.png">
+                <p>商品</p>
+            </li>
+            <li>
+                <img src="images/5.png">
+                <p>生活</p>
+            </li>
+            <li>
+                <img src="images/6.png">
+                <p>品牌</p>
+            </li>
+            <li>
+                <img src="images/7.png">
+                <p>聚宝盆</p>
+            </li>
+            <li>
+                <img src="images/8.png">
+                <p>聚名品</p>
+            </li>
+            <li>
+                <img src="images/9.png">
+                <p>聚家装</p>
+            </li>
+            <li>
+                <img src="images/10.png">
+                <p>聚透</p>
+            </li>
+            <li>
+                <img src="images/11.png">
+                <p>客户端</p>
+            </li>
+        </ul>
+        <div class="hot">
+            <i></i>
+            聚划算热卖排行
+            <span>TOP10</span>
+        </div>
+        <ul class="list">
+            <li>
+                <i class="number">1</i>
+                <img src="images/1.jpg">
+                <div class="price">
+                    <div>
+                        <p>已售68423</p>
+                        <p><span class="red">2.3</span>折&nbsp&nbsp￥<span class="word">299</span></p>
+                    </div>
+                    <span class="red num">￥51</span>
+                </div>
+                <i class="icon"></i>
+            </li>
+            <li>
+                <i class="number">2</i>
+                <img src="images/2.jpg">
+                <div class="price">
+                    <div>
+                        <p>已售68423</p>
+                        <p><span class="red">2.3</span>折&nbsp&nbsp￥<span class="word">299</span></p>
+                    </div>
+                    <span class="red num">￥51</span>
+                </div>
+                <i class="icon"></i>
+            </li>
+            <li>
+                <i class="number">3</i>
+                <img src="images/3.jpg">
+                <div class="price">
+                    <div>
+                        <p>已售68423</p>
+                        <p><span class="red">2.3</span>折&nbsp&nbsp￥<span class="word">299</span></p>
+                    </div>
+                    <span class="red num">￥51</span>
+                </div>
+                <i class="icon"></i>
+            </li>
+            <li>
+                <i class="number">4</i>
+                <img src="images/4.jpg">
+                <div class="price">
+                    <div>
+                        <p>已售68423</p>
+                        <p><span class="red">2.3</span>折&nbsp&nbsp￥<span class="word">299</span></p>
+                    </div>
+                    <span class="red num">￥51</span>
+                </div>
+                <i class="icon"></i>
+            </li>
+            <li>
+                <i class="number">5</i>
+                <img src="images/5.jpg">
+                <div class="price">
+                    <div>
+                        <p>已售68423</p>
+                        <p><span class="red">2.3</span>折&nbsp&nbsp￥<span class="word">299</span></p>
+                    </div>
+                    <span class="red num">￥51</span>
+                </div>
+                <i class="icon"></i>
+            </li>
+            <li>
+                <i class="number">6</i>
+                <img src="images/6.jpg">
+                <div class="price">
+                    <div>
+                        <p>已售68423</p>
+                        <p><span class="red">2.3</span>折&nbsp&nbsp￥<span class="word">299</span></p>
+                    </div>
+                    <span class="red num">￥51</span>
+                </div>
+                <i class="icon"></i>
+            </li>
+            <li>
+                <i class="number">7</i>
+                <img src="images/7.jpg">
+                <div class="price">
+                    <div>
+                        <p>已售68423</p>
+                        <p><span class="red">2.3</span>折&nbsp&nbsp￥<span class="word">299</span></p>
+                    </div>
+                    <span class="red num">￥51</span>
+                </div>
+                <i class="icon"></i>
+            </li>
+            <li>
+                <i class="number">8</i>
+                <img src="images/8.jpg">
+                <div class="price">
+                    <div>
+                        <p>已售68423</p>
+                        <p><span class="red">2.3</span>折&nbsp&nbsp￥<span class="word">299</span></p>
+                    </div>
+                    <span class="red num">￥51</span>
+                </div>
+                <i class="icon"></i>
+            </li>
+            <li>
+                <i class="number">9</i>
+                <img src="images/9.jpg">
+                <div class="price">
+                    <div>
+                        <p>已售68423</p>
+                        <p><span class="red">2.3</span>折&nbsp&nbsp￥<span class="word">299</span></p>
+                    </div>
+                    <span class="red num">￥51</span>
+                </div>
+                <i class="icon"></i>
+            </li>
+            <li>
+                <i class="number">10</i>
+                <img src="images/10.jpg">
+                <div class="price">
+                    <div>
+                        <p>已售68423</p>
+                        <p><span class="red">2.3</span>折&nbsp&nbsp￥<span class="word">299</span></p>
+                    </div>
+                    <span class="red num">￥51</span>
+                </div>
+                <i class="icon"></i>
+            </li>
+        </ul>
+        <div class="nr-box">
+            <ul>
+                <li class="nr">
+                    <p>更多划算 逛起来！</p>
+                    <div>
+                        <img src="images/11.jpg">
+                        <ul>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nr">
+                    <p>更多划算 逛起来！</p>
+                    <div>
+                        <img src="images/12.jpg">
+                        <ul>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nr">
+                    <p>更多划算 逛起来！</p>
+                    <div>
+                        <img src="images/13.jpg">
+                        <ul>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                            <li>服饰</li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nr">
+                    <p>更多划算 逛起来！</p>
+                    <div class="pic2">
+                        <img src="images/12.png">
+                        <img src="images/13.png">
+                        <img src="images/14.png">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <footer>
+            <div class="login">
+                <a href="javascript:;">登录</a>
+                <a href="javascript:;">注册</a>
+                <span>TOP</span>
+                <i></i>
+            </div>
+            <div class="last">
+                <div>
+                    <p>标准版   电脑版</p>
+                    <p>©2013 浙B2-20080224   服务中心</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

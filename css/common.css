@@ -1,0 +1,111 @@
+.loadDiv{ width: 100%; background: url(../images/w_bg.jpg); position: fixed; z-index: 999; left: 0; top: 0; opacity: 1;}
+.load{ width: 200px; height: 100px; position: absolute; left: 50%; margin-left: -100px; top: 50%; text-align: center;}
+.load span{  color: #fff; font-size: 30px; }
+.load_line{ width: 200px; height: 20px; border-radius: 10px; background: #fff; margin-bottom: 20px; overflow: hidden;}
+.load_line p{ width: 0; height: 20px; border-radius: 10px; background: #ed6a00;}
+
+.header{ width: 100%; height: 76px; background: #1c1c1c; position:fixed; z-index: 100;}
+.header_main{ width: 1100px; height: 76px; margin: 0 auto;}
+.header_main img{ float: left;}
+.nav{ width: 440px; height: 50px; float: right; padding-top: 26px; }
+
+.pic img{width:64px;height:64px;border-radius: 50%;margin: 5px 0 0 86px;}
+.pic p{font-size: 14px;position: absolute;top: 50px;left: 300px; color: #fff;}
+
+.nav_main{ height: 30px; overflow: hidden;}
+.nav_main a{ width: 110px; height: 30px; display: block; text-align: left; float: left; color: #fff; font-size: 16px; font-family: "微软雅黑"; line-height: 30px; position: relative; overflow: hidden;}
+.nav_main a span{ width: 110px; height: 30px; display: block; position: absolute; top: 0; text-align: center;} 
+.nav_main a span font{ width: 110px; height: 30px; display: block;}
+
+.blank{ width: 100%; height: 76px; *height: 0px; overflow: hidden;}
+
+.wrap{ width: 100%; overflow:hidden; position: relative;}
+.main{ width: 100%; position: absolute;}
+
+.banner{ width: 100%; height: 100%; position: relative; overflow: hidden;}
+.scroll{ width: 100%; height: 100%; position: absolute; left: 0; top: 0; overflow: hidden;}
+
+.scroll div{ width: 100%; height: 100%;  position: absolute; z-index: 5;}
+.scroll div:nth-of-type(1){ background:url(../images/banner_04.jpg) no-repeat center center; background-size: cover;}
+.scroll div:nth-of-type(2){ background:url(../images/banner_05.jpg) no-repeat center center}
+
+.scroll div.deep{ z-index: 2;}
+
+.scroll div p{ width: 952px; height: 425px; position: absolute; left: 50%; top: 50%; margin: -212px 0 0 -476px}
+.scroll div.up p img{ z-index: 10; }
+
+.scroll div p img{ display: block; position: absolute; bottom: 0}
+.scroll div p.img1 img:nth-of-type(1){ width: 97px; height: 165px; left: 0;  z-index: 10;}
+.scroll div p.img1 img:nth-of-type(2){ width: 291px; height: 220px; left: 50px; z-index: 7;}
+.scroll div p.img1 img:nth-of-type(3){ width: 551px; height: 433px; left: 170px; z-index: 5;}
+.scroll div p.img1 img:nth-of-type(4){ width: 424px; height: 253px; left: 520px; z-index: 10;}
+
+.scroll div p.img2 img:nth-of-type(1){ left: 40px; top: 70px;}
+.scroll div p.img2 img:nth-of-type(2){ left: 268px; top: 70px;}
+.scroll div p.img2 img:nth-of-type(3){ left: 497px; top: 70px;}
+.scroll div p.img2 img:nth-of-type(4){ left: 730px; top: 70px;}
+.scroll div p.img2 img:nth-of-type(5){ left: 40px; top: 220px;}
+.scroll div p.img2 img:nth-of-type(6){ left: 268px; top: 220px;}
+.scroll div p.img2 img:nth-of-type(7){ left: 497px; top: 220px;}
+.scroll div p.img2 img:nth-of-type(8){ left: 730px; top: 220px;}
+.scroll div p.img2 img{ transition: .8s all ease; }
+.scroll div p.img2 img:hover{ transform: rotate(360deg);}
+
+.btns{ width: 100%; height: 68px; position: absolute;  top: 50%; margin-top: -34px; z-index: 20;}
+.btns a{ width: 39px; height: 68px; display: block; position: absolute;}
+.btns a.btn01{ left: 50px;}
+.btns a.btn02{ right: 50px;}
+
+.sideNav{ width: 133px; height: 2px; position: absolute; bottom: 20px; left: 50%; margin-left: -67px; overflow: hidden; z-index: 20;}
+.sideNav a{ width: 50px; height: 2px; display: block; background: #fff; float: left;  margin-right: 15px;}
+.sideNav a.active{ background: #333}
+
+.works{ width: 100%; background:url(../images/w_bg.jpg) repeat; position: relative; font-family: "微软雅黑"; }
+.work_nav{ width: 100%; position: absolute; bottom: 20px; text-align: center;}
+.work_nav a{  color: #fff; font-size: 14px; padding: 2px 10px; margin: 0 5px;}
+.work_nav a.active{ background: #fff; color: #000}
+.work_nav a:hover{ background: #fff; color: #000 }
+.work_w{ width: 1068px; height: 500px; margin: 0 auto; overflow:hidden; position: relative;}
+.work_list{ width: 2136px; height: 500px; position: absolute; left: 0;}
+.work_main{ width: 1068px; height: 500px; position: relative; float: left;}
+.work_main a{ width: 210px; height: 210px; position: absolute; display: none; border-radius: 50%; overflow: hidden;}
+.work_main a span{ width: 210px; height: 210px; display: block; position: absolute; border-radius: 50%; top: 0; display: none; text-align: center; line-height: 210px; font-size: 22px; color: #fff;}
+.work_main a p{ width: 210px; height: 170px; display: block; position: absolute; border-radius: 50%; top: 0; display: none; color: #fff; padding-top: 40px;}
+.work_main a p font{ width: 100%; text-align: center; font-size: 22px; display: block; margin-top:60px;}
+
+.work_main img{width: 210px; height: 210px;}
+
+.about{ width: 1000px; height: 100%; margin: 0 auto; position: relative; }
+/* .about_main{ width: 1000px; height: 560px; position: absolute; top: 50%; margin-top: -280px;}
+.about_img01{ width: 1000px; position: absolute; top:0; padding-top: 20px;} */
+.about_text{ font-family: "微软雅黑"; font-size: 16px;}
+.about_text table td:nth-child(1){ width: 80px; font-weight: bold; }
+.about_text table td{ height: 40px; line-height: 40px; color: #000;}
+
+/* .about_map{ width: 364px; height: 226px; background: url(../images/about/about_pic.jpg) no-repeat; float: right; position: relative; }
+ */
+.about_img02{ width: 1000px; position: absolute; bottom:0;}
+
+.contact{ width: 100%; background:url(../images/c_bg.jpg) no-repeat center top; background-size: cover; position: relative; -webkit-perspective:1000; -webkit-perspective-origin: center center; -moz-perspective:1000; -moz-perspective-origin: center center; -ms-perspective:1000; -ms-perspective-origin: center center;  }
+.contact div{width: 389px; height: 183px; background: rgba(255,255,255,0.7); position: absolute; left: 50%; top: 50%; margin: -156px 0 0 -260px; padding-left: 130px; line-height: 30px; padding-top: 130px; font-size: 18px; font-family: '微软雅黑';  }
+
+@-webkit-keyFrames rx{
+    0%{ -webkit-transform:rotateX(90deg);}
+    80%{ -webkit-transform:rotateX(0deg);}
+    90%{ -webkit-transform:rotateX(20deg);}
+    100%{ -webkit-transform:rotateX(0);}
+}
+
+@-moz-keyFrames rx{
+    0%{ -moz-transform:rotateX(90deg);}
+    80%{ -moz-transform:rotateX(0deg);}
+    90%{ -moz-transform:rotateX(20deg);}
+    100%{ -moz-transform:rotateX(0);}
+}
+
+@-ms-keyFrames rx{
+    0%{ -ms-transform:rotateX(90deg);}
+    80%{ -ms-transform:rotateX(0deg);}
+    90%{ -ms-transform:rotateX(20deg);}
+    100%{ -ms-transform:rotateX(0);}
+}

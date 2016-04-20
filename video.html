@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            text-align: center;
+        }
+        #div1{
+            width:600px;
+            height:10px;
+            margin: 0 auto;
+            background: #ccc;
+            position: relative;
+        }
+        #bar{
+            width:0;
+            height:100%;
+            background: red;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var oV=document.getElementById('v1');
+            var aBtn=document.querySelectorAll('input');
+            var oDiv=document.getElementById('div1');
+            var oBar=document.getElementById('bar');
+
+            //播放
+            aBtn[0].onclick=function(){
+                oV.play();
+            };
+
+            //暂停
+            aBtn[1].onclick=function(){
+                oV.pause();
+            };
+
+            //快进
+            aBtn[2].onclick=function(){
+                oV.currentTime+=10;
+            };
+
+            //快退
+            aBtn[3].onclick=function(){
+                oV.currentTime-=10;
+            };
+
+            //变大
+            aBtn[4].onclick=function(){
+                oV.width='1000';
+            };
+
+            //全屏
+            aBtn[5].onclick=function(){
+                oV.webkitRequestFullScreen();
+            };
+
+            //增加声音
+            aBtn[6].onclick=function(){
+                oV.volume+=0.1;
+            };
+            //减少声音
+            aBtn[7].onclick=function(){
+                oV.volume-=0.1;
+            };
+            //静音
+            var bSign=true;
+            aBtn[8].onclick=function(){
+                if(bSign){
+                    oV.muted=true;
+                    this.value='取消静音';
+                }else{
+                    oV.muted=false;
+                    this.value='静音';
+                }
+                bSign=!bSign;
+            };
+
+            //播放进度
+            oV.ontimeupdate=function(){
+
+                var scale=oV.currentTime/oV.duration;
+
+                oBar.style.width=scale*100+'%';
+            };
+
+            //播放结束
+            oV.onended=function(){
+                alert('播放结束了');
+            };
+        };
+    </script>
+</head>
+<body>
+<div>
+    <input type="button" value="播放">
+    <input type="button" value="暂停">
+    <input type="button" value="快进">
+    <input type="button" value="快退">
+    <input type="button" value="变大">
+    <input type="button" value="全屏">
+    <input type="button" value="v+">
+    <input type="button" value="v-">
+    <input type="button" value="静音">
+</div>
+<video src="2.mp4" id="v1" width="600"></video>
+<div id="div1">
+    <div id="bar"></div>
+</div>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            overflow: hidden;
+        }
+        body{
+            background: #000;
+        }
+        canvas{
+            background: #000;
+        }
+        span{
+            color: #fff;
+            font-size: 50px;
+        }
+    </style>
+    <script>
+        function rnd(n,m){
+            return parseInt(Math.random()*(m-n)+n);
+        }
+        window.onload=function(){
+            var oC=document.getElementById('c1');
+
+            var gd=oC.getContext('2d'); //画笔
+
+            var winW=document.documentElement.clientWidth;
+            var winH=document.documentElement.clientHeight;
+
+            oC.width=winW;
+            oC.height=winH;
+
+            var N=5; //点的数量
+
+            var LEN=200;
+            var aPoint=[]; //[{x,y,speedX,speedY}]
+            var oldArr=[]; //尾巴
+
+            for(var i=0; i<N; i++){
+                aPoint[i]={
+                    x:rnd(0,winW),
+                    y:rnd(0,winH),
+                    iSpeedX:rnd(-8,8),
+                    iSpeedY:rnd(-8,8)
+                };
+            }
+
+            setInterval(function(){
+                gd.clearRect(0,0,oC.width,oC.height);
+                
+                for(var i=0; i<aPoint.length; i++){
+                    aPoint[i].x+=aPoint[i].iSpeedX;
+                    aPoint[i].y+=aPoint[i].iSpeedY;
+
+                    if(aPoint[i].x>=winW){
+                        aPoint[i].x=winW;
+                        aPoint[i].iSpeedX*=-1;
+                    }
+                    if(aPoint[i].x<=0){
+                        aPoint[i].x=0;
+                        aPoint[i].iSpeedX*=-1;
+                    }
+                    if(aPoint[i].y<=0){
+                        aPoint[i].y=0;
+                        aPoint[i].iSpeedY*=-1;
+                    }
+                    if(aPoint[i].y>=winH){
+                        aPoint[i].y=winH;
+                        aPoint[i].iSpeedY*=-1;
+                    }
+
+                    drawPoint(aPoint[i]);
+                }
+
+                //连线
+                gd.beginPath();
+                gd.strokeStyle='#fff';
+                gd.moveTo(aPoint[0].x,aPoint[0].y);
+                for(var i=1; i<aPoint.length; i++){
+                    gd.lineTo(aPoint[i].x, aPoint[i].y);
+                }
+                gd.closePath();
+                gd.stroke();
+
+                //画尾巴
+                var arr=[];
+                for(var i=0; i<aPoint.length; i++){
+                    arr[i]={
+                        x:aPoint[i].x,
+                        y:aPoint[i].y
+                    };
+                }
+
+                oldArr.push(arr);
+
+                if(oldArr.length>LEN){
+                    oldArr.shift();
+                }
+
+                for(var i=0; i<oldArr.length; i++){
+                    gd.beginPath();
+                    var opacity=i/oldArr.length;
+                    gd.strokeStyle='rgba(255,255,255,'+opacity+')';
+                    gd.moveTo(oldArr[i][0].x,oldArr[i][0].y);
+
+                    for(var j=1; j<oldArr[i].length; j++){
+                        gd.lineTo(oldArr[i][j].x, oldArr[i][j].y);
+                    }
+                    gd.closePath();
+                    gd.stroke();
+                }
+            },16);
+
+            //drawPoint
+            function drawPoint(p){
+                var pW=1;
+                var pH=1;
+                gd.fillStyle='#fff';
+                gd.fillRect(p.x-pW/2, p.y-pH/2,pW,pH);
+            }
+        };
+    </script>
+</head>
+<body>
+    <canvas id="c1" width="800" height="600">
+    </canvas>
+</body>
+</html>
+
+
+
+

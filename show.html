@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<style>
+* { margin:0; padding:0; }
+.box { overflow:-hidden; position:relative; width:900px; height:600px; border:2px solid red; margin:10px auto; }
+ul { position:absolute; top:50%; left:0; margin-top:-150px; }
+ul:after { display:table; clear:both; content:''; }
+li { list-style:none; float:left; width:400px; height:300px; position:relative; }
+img { width:400px; height:300px; }
+</style>
+<script>
+window.onload=function (){
+	var oDiv=document.getElementById('div1');
+	var iCenter=oDiv.offsetWidth/2;
+	var oUl=document.getElementById('ul1');
+	var aLi=oUl.children;
+	var aImg=document.getElementsByTagName('img');
+	var nLiW=aLi[0].offsetWidth;
+	oUl.style.width=nLiW*aLi.length+'px';
+	var nMaxLeft=iCenter-nLiW/2;
+	var nMinLeft=iCenter-(oUl.offsetWidth-0.5*nLiW);
+	
+	// 默认在中间
+	oUl.style.left=iCenter-(3-0.5)*nLiW+'px';
+	setSize();
+	
+	// 拖拽
+	oUl.onmousedown=function (ev){
+		var oEvent=ev || event;
+		var disX=oEvent.clientX-oUl.offsetLeft;
+		
+		document.onmousemove=function (ev){
+			var oEvent=ev || event;
+			var left=oEvent.clientX-disX;
+			// 限制范围
+			if (left > nMaxLeft)
+			{	// left
+				left=nMaxLeft;
+			}
+			else if (left < nMinLeft)
+			{
+				left=nMinLeft;
+			}
+			
+			oUl.style.left=left+'px';
+			
+			// 放大
+			setSize();
+		};
+		
+		document.onmouseup=function (){
+			document.onmousemove=null;
+			document.onmouseup=null;
+		};
+		
+		return false;
+	};
+	
+	function setSize()
+	{
+		for (var i=0; i<aLi.length; i++)
+		{
+			var dis=Math.abs(oUl.offsetLeft+aLi[i].offsetLeft+nLiW/2-iCenter);
+			
+			var scale=(1-dis/500).toFixed(2);
+			(scale<0.5) && (scale=0.5);
+			
+			aImg[i].style.width=800*scale+'px';
+			aImg[i].style.height=600*scale+'px';
+			
+			// 中心放大
+			aImg[i].style.marginLeft=-(aImg[i].offsetWidth-400)/2+'px';
+			aImg[i].style.marginTop=-(aImg[i].offsetHeight-300)/2+'px';
+			
+			// 层级问题
+			aLi[i].style.zIndex=100*scale;
+			
+			// 透明度
+			// aLi[i].style.opacity=scale;
+		}
+	}
+};
+</script>
+</head>
+
+<body>
+	<div class="center"></div>
+	<div class="box" id="div1">
+		<ul id="ul1">
+			<li><img src="img/car1.jpg" /></li>
+			<li><img src="img/car2.jpg" /></li>
+			<li><img src="img/car3.jpg" /></li>
+			<li><img src="img/car4.jpg" /></li>
+			<li><img src="img/car5.jpg" /></li>
+			<li><img src="img/car6.jpg" /></li>
+		</ul>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
